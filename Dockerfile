@@ -17,6 +17,7 @@ RUN apt-get update && \
     phablet-tools u-boot-tools libgmp3-dev gawk procmail autotools-dev m4 autoconf2.13  autoconf-archive \
     gnu-standards autoconf-doc libtool libgmp3-dev realpath bc dos2unix python bc python-crypto \
     linux-headers-generic u-boot-tools lzop pkg-config && \
-    ln -sf /bin/bash /bin/sh
+    echo "dash dash/sh boolean false" | debconf-set-selections && \
+    DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 ENV USER=root
