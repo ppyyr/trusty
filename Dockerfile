@@ -7,7 +7,7 @@ RUN apt-get update && \
     add-apt-repository ppa:ubuntu-toolchain-r/test && \
     add-apt-repository ppa:openjdk-r/ppa && \
     apt-get update && \
-    apt-get -y install openssh-server openjdk-8-jdk git git-core gnupg flex bison unzip tree \
+    apt-get -y install openssh-server vim openjdk-8-jdk git git-core gnupg flex bison unzip tree \
     gperf build-essential zip curl zlib1g-dev libc6-dev lib32ncurses5-dev lib32z1 lib32ncurses5 \
     gcc-multilib x11proto-core-dev libx11-dev lib32z-dev libgl1-mesa-dev libxml2-dev \
     g++-multilib tofrodos python-markdown libxml2-utils xsltproc libssl-dev libxml-parser-perl \
@@ -24,6 +24,8 @@ RUN apt-get update && \
     ln -s /usr/lib/x86_64-linux-gnu/crt*.o /usr/lib/ && ln -s /lib/x86_64-linux-gnu/libz.so.1 /usr/lib/libz.so && \
     ln -fs /usr/bin/gcc-4.8 /usr/bin/gcc && \
     echo "dash dash/sh boolean false" | debconf-set-selections && \
+    echo root:s | chpasswd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
     DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 
 ADD run.sh /run.sh

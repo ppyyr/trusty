@@ -1,7 +1,7 @@
-# trusty(ubuntu 14.04)
+ubuntu 16.04
 
-For build Android
+For build mstar Android
 
 Init: You should have mtk toolchains, then extract toolchains to mtkoss and mtkeda
 
-Usage: docker run -it --rm -v $(pwd):$(pwd) -v /mtkoss:/mtkoss -v /mtkeda:/mtkeda kanako/trusty bash
+Usage: docker run -d -p 1022:22 -v $(pwd):/root:rw kanako/trusty
